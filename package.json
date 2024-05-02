@@ -10,7 +10,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@supernovaio/sdk": "^2.0.15"
+        "@supernovaio/sdk": "^2.0.15",
+        "@supernova-studio/supernova-sdk-beta": "0.7.19"
     },
     "devDependencies": {
         "ts-node": "^10.9.1",

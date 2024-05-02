@@ -1,4 +1,5 @@
-import { DocsEntityType, Supernova } from "@supernovaio/sdk";
+// import { DocsEntityType, Supernova } from "@supernovaio/sdk";
+import { DocsEntityType, Supernova } from "@supernova-studio/supernova-sdk-beta";
 import * as fs from 'fs';
 
 const API_KEY = "***";
@@ -7,7 +8,7 @@ const DESIGN_SYSTEM_ID = "123";
 
 const log = (data: object, file: string) => {
     const replacer = (key: string, value: string) =>
-        (["gradientLayers", "shadowLayers"].includes(key)) ? key : value;
+        (["gradientLayers", "shadowLayers", "parent"].includes(key)) ? key : value;
 
     fs.writeFileSync(file, JSON.stringify(data, replacer, 2));
     console.log(data);
@@ -41,4 +42,8 @@ const log = (data: object, file: string) => {
 
     const welcomePage = docStructure.find(p => p.type === DocsEntityType.page && p.title === 'Welcome!')!;
     log(welcomePage, "page.json");
+
+    // Supported in @supernova-studio/supernova-sdk-beta@0.7.19
+    const pages = await sdk.documentation.getDocumentationPages(from);
+    log(pages, "pages.json");
 })();
